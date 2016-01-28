@@ -1,171 +1,131 @@
-<mvc:View 
-    controllerName="au.gov.humanservices.ccs.ProviderManagement.view.Detail"
-    xmlns="sap.m"
-    xmlns:core="sap.ui.core"
-    xmlns:mvc="sap.ui.core.mvc"
-    xmlns:l="sap.ui.layout"
-    xmlns:f="sap.ui.layout.form">
-    <Page
-        id="detailPage" 
-        navButtonPress="onNavBack" 
-        title="{i18n>detailTitle}" 
-        showNavButton="{device>/isPhone}">
-        <content>
-            <ObjectHeader 
-                id="detailHeader" 
-				title="{ChildName}" 
-				number="{HoursWeekly}" 
-				numberUnit="{ValidSince}"
-                introActive="false" 
-                titleActive="false" 
-                iconActive="false">
-                <attributes
-                    id="detailAttributes">                
-                    <ObjectAttribute 
-                        id="attribute" 
-                        text="{i18n>detailText}" 
-                        active="false">
-                    </ObjectAttribute>
-                </attributes>
-                <firstStatus
-                    id="detailStatus">
-                    <ObjectStatus 
-                        id="status" 
-						text="{path:'IsActive', formatter:'.formatIsActive'}"
-						state="{path:'IsActive', formatter:'.formatIsActiveState'}">
-                    </ObjectStatus>
-                </firstStatus>
-            </ObjectHeader>
-            <IconTabBar 
-                id="idIconTabBar" 
-                expanded="{device>/isNoPhone}">
-    			<items 
-    			    id="detailsItems">
-                    <IconTabFilter 
-                        id="iconTabFilter1" 
-                        key="selfInfo" 
-                        icon="sap-icon://hint">
-                        <content>
-							<f:SimpleForm 
-								id="iconTabFilter1form" 
-								minWidth="1024" 
-								editable="false" 
-								layout="ResponsiveGridLayout" 
-								labelSpanL="3" 
-								labelSpanM="3" 
-								emptySpanL="4" 
-								emptySpanM="4" 
-								columnsL="1">
+<mvc:View controllerName="au.gov.humanservices.ccs.ProviderManagement.view.Detail" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout" xmlns:me="sap.me" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<Page id="detailPage" navButtonPress="onNavBack" showNavButton="{device]/isPhone}" title="{i18n>detailTitle}">
+		<content>
+			<ObjectHeader iconActive="false" id="detailHeader" introActive="false" number="{HoursWeekly}" numberUnit="{ValidSince}" title="{ChildName}"
+				titleActive="false">
+				<attributes id="detailAttributes">
+					<ObjectAttribute active="false" id="attribute" text="{i18n>detailText}"></ObjectAttribute>
+				</attributes>
+				<firstStatus id="detailStatus">
+					<ObjectStatus id="status" state="{path:'IsActive', formatter:'.formatIsActiveState'}" text="{path:'IsActive', formatter:'.formatIsActive'}"></ObjectStatus>
+				</firstStatus>
+			</ObjectHeader>
+			<IconTabBar id="idIconTabBar">
+				<items id="detailsItems">
+					<IconTabFilter icon="sap-icon://hint" id="iconTabFilter1" key="selfInfo">
+						<content>
+							<f:SimpleForm columnsL="1" editable="false" emptySpanL="4" emptySpanM="4" id="iconTabFilter1form" labelSpanL="3" labelSpanM="3"
+								layout="ResponsiveGridLayout" minWidth="1024">
 								<f:content>
-									<Label 
-										id="label1" 
-										text="Email">
-									</Label>
-									<Text 
-										id="text1"
-										text="{Email}"
-										maxLines="0">
-									</Text>
-									<Label 
-										id="label2" 
-										text="Phone">
-									</Label>
-									<Text 
-										id="text2"
-										text="{Phone}"
-										maxLines="0">
-									</Text>
-									<Label 
-										id="label3" 
-										text="RoomNo">
-									</Label>
-									<Text 
-										id="text3"
-										text="{RoomNo}"
-										maxLines="0">
-									</Text>
-									<core:ExtensionPoint 
-										name="extIconTabFilterForm1"/>
+									<Label id="childGrnLabel" text="{i18n>childGrnText}"></Label>
+									<Input id="childGrnInput" value="{ChildGRN}"></Input>
+									<Label id="childNameLabel" text="{i18n>childNameText}"></Label>
+									<Text id="childNameText" maxLines="0" text="{ChildName}"></Text>
+									<Label id="validSinceLabel" text="{i18n>validSinceText}"></Label>
+									<DateTimeInput id="validSinceDateInput" value="{ValidSince}" type="Date"></DateTimeInput>
+									<Label id="validUntilLabel" text="{i18n>validUntilText}"></Label>
+									<DateTimeInput id="validUntilDateInput" value="{ValidUntil}" type="Date"></DateTimeInput>
 								</f:content>
 							</f:SimpleForm>
-                        </content>
-                    </IconTabFilter>
-                    <IconTabFilter 
-                        id="iconTabFilter2" 
-                        key="" 
-                        icon="sap-icon://enter-more">
-                        <content>
-							<f:SimpleForm 
-								id="iconTabFilter2form" 
-								minWidth="1024" 
-								editable="false" 
-								layout="ResponsiveGridLayout" 
-								labelSpanL="3" 
-								labelSpanM="3" 
-								emptySpanL="4" 
-								emptySpanM="4" 
-								columnsL="1">
-								<f:content>
-									<Label 
-										id="label4" 
-										text="">
-									</Label>
-									<Text 
-										id="text4"
-										text=""
-										maxLines="0">
-									</Text>
-									<Label 
-										id="label5" 
-										text="">
-									</Label>
-									<Text 
-										id="text5"
-										text=""
-										maxLines="0">
-									</Text>
-									<Label 
-										id="label6" 
-										text="">
-									</Label>
-									<Text 
-										id="text6"
-										text=""
-										maxLines="0">
-									</Text>
-									<core:ExtensionPoint 
-										name="extIconTabFilterForm2"/>
-								</f:content>
-							</f:SimpleForm>
-                        </content>
-                    </IconTabFilter>
-    				<core:ExtensionPoint
-    				    name="extIconTabFilter"/>
-                </items>
-            </IconTabBar>
-    		<core:ExtensionPoint 
-    		    name="extDetail"/>
-        </content>
-        <footer
-            id="detailFooter">
-            <Toolbar id="detailToolbar">
-                <content>
-                    <ToolbarSpacer
-                        id="toolbarSpacer">
-                    </ToolbarSpacer>
-                    <Button 
-                        id="actionButton" 
-                        press="openActionSheet" 
-                        icon="sap-icon://action">
-                    </Button>
-                    <Button 
-                        id="saveButton"
-                        text="{i18n>saveText}"
-                        type="Emphasized"
-                        press="onSaveButtonPressed" >
-                    </Button>
-                </content>
-            </Toolbar>
-        </footer>
-    </Page>
+						</content>
+					</IconTabFilter>
+					<IconTabFilter icon="sap-icon://appointment" id="iconTabFilter2" key="schedule">
+						<content>
+							<IconTabBar class="sapUiResponsiveContentPadding" id="weeklyHoursTabBar">
+								<items>
+									<IconTabFilter count="{HoursMON}" key="MON" text="{i18n>dayMON}">
+										<content>
+											<SegmentedButton id="hoursMONSegmentedButton" class="sapUiSmallMargin" >
+												<Button id="hoursMON4Button" text="4 {i18n>hoursText}"/>
+												<Button id="hoursMON6Button" text="6 {i18n>hoursText}"/>
+												<Button id="hoursMON8Button" text="8 {i18n>hoursText}"/>
+											</SegmentedButton>
+										</content>
+									</IconTabFilter>
+									<IconTabFilter count="{HoursTUE}" key="TUE" text="{i18n>dayTUE}">
+										<content>
+											<SegmentedButton id="hoursTUESegmentedButton" class="sapUiSmallMargin" >
+												<Button id="hoursTUE4Button" text="4 {i18n>hoursText}"/>
+												<Button id="hoursTUE6Button" text="6 {i18n>hoursText}"/>
+												<Button id="hoursTUE8Button" text="8 {i18n>hoursText}"/>
+											</SegmentedButton>
+										</content>
+									</IconTabFilter>
+									<IconTabFilter count="{HoursWED}" key="WED" text="{i18n>dayWED}">
+										<content>
+											<SegmentedButton id="hoursWEDSegmentedButton" class="sapUiSmallMargin" >
+												<Button id="hoursWED4Button" text="4 {i18n>hoursText}"/>
+												<Button id="hoursWED6Button" text="6 {i18n>hoursText}"/>
+												<Button id="hoursWED8Button" text="8 {i18n>hoursText}"/>
+											</SegmentedButton>
+										</content>
+									</IconTabFilter>
+									<IconTabFilter count="{HoursTHU}" key="THU" text="{i18n>dayTHU}">
+										<content>
+											<SegmentedButton id="hoursTHUSegmentedButton" class="sapUiSmallMargin" >
+												<Button id="hoursTHU4Button" text="4 {i18n>hoursText}"/>
+												<Button id="hoursTHU6Button" text="6 {i18n>hoursText}"/>
+												<Button id="hoursTHU8Button" text="8 {i18n>hoursText}"/>
+											</SegmentedButton>
+										</content>
+									</IconTabFilter>
+									<IconTabFilter count="{HoursFRI}" key="FRI" text="{i18n>dayFRI}">
+										<content>
+											<SegmentedButton id="hoursFRISegmentedButton" class="sapUiSmallMargin" >
+												<Button id="hoursFRI4Button" text="4 {i18n>hoursText}"/>
+												<Button id="hoursFRI6Button" text="6 {i18n>hoursText}"/>
+												<Button id="hoursFRI8Button" text="8 {i18n>hoursText}"/>
+											</SegmentedButton>
+										</content>
+									</IconTabFilter>
+									<IconTabFilter count="{HoursSAT}" key="SAT" text="{i18n>daySAT}">
+										<content>
+											<SegmentedButton id="hoursSATSegmentedButton" class="sapUiSmallMargin" >
+												<Button id="hoursSAT4Button" text="4 {i18n>hoursText}"/>
+												<Button id="hoursSAT6Button" text="6 {i18n>hoursText}"/>
+												<Button id="hoursSAT8Button" text="8 {i18n>hoursText}"/>
+											</SegmentedButton>
+										</content>
+									</IconTabFilter>
+									<IconTabFilter count="{HoursSUN}" key="SUN" text="{i18n>daySUN}">
+										<content>
+											<SegmentedButton id="hoursSUNSegmentedButton" class="sapUiSmallMargin" >
+												<Button id="hoursSUN4Button" text="4 {i18n>hoursText}"/>
+												<Button id="hoursSUN6Button" text="6 {i18n>hoursText}"/>
+												<Button id="hoursSUN8Button" text="8 {i18n>hoursText}"/>
+											</SegmentedButton>
+										</content>
+									</IconTabFilter>
+								</items>
+							</IconTabBar>
+						</content>
+					</IconTabFilter>
+					<IconTabFilter icon="sap-icon://time-overtime" id="iconTabFilter3" key="claim">
+						<content>
+							<me:Calendar enableMultiselection="false" changeRange="" changeCurrentDate="" firstDayOffset="1" hideNavControls="false" dayWidth="45"
+								dayHeight="50" design="Approval" hideMonthTitles="false" id="id" selectionMode="SINGLE" singleRow="true" swipeToNavigate="{device]/isPhone}" tapOnDate=""
+								visible="true" weeksPerRow="1" width="100%" xmlns="sap.me">
+								<tooltip></tooltip>
+								<!-- sap.ui.core.TooltipBase -->
+								<dependents></dependents>
+								<!-- sap.ui.core.Control, since 1.19 -->
+							</me:Calendar>
+						</content>
+					</IconTabFilter>
+					<core:ExtensionPoint name="extIconTabFilter"/>
+				</items>
+			</IconTabBar>
+			<core:ExtensionPoint name="extDetail"/>
+		</content>
+		<footer id="detailFooter">
+			<Toolbar id="detailToolbar">
+				<content>
+					<ToolbarSpacer id="toolbarSpacer"></ToolbarSpacer>
+					<Button icon="sap-icon://action" id="actionButton" press="openActionSheet"></Button>
+					<Button id="saveButton" press="onSaveButtonPressed" text="{i18n>saveText}" type="Emphasized"></Button>
+				</content>
+			</Toolbar>
+		</footer>
+	</Page>
 </mvc:View>
