@@ -1,0 +1,21 @@
+<mvc:View 
+    controllerName="au.gov.humanservices.ccs.ProviderManagement.view.NotFound"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc" >
+    <Page 
+        id="notFoundPage" 
+        title="{i18n>notFoundTitle}" 
+        enableScrolling="false">
+        <content>
+            <MessagePage showHeader="false"
+                text="{i18n>notFoundText}" 
+                icon="sap-icon://question-mark" />
+        </content>
+        <footer
+            id="notFoundFooter">
+            <Toolbar 
+                id="notFoundToolbar">
+            </Toolbar>
+        </footer>
+    </Page>
+</mvc:View>

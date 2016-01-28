@@ -1,0 +1,1 @@
+sap.ui.core.mvc.Controller.extend("au.gov.humanservices.ccs.ProviderManagement.view.NotFound", {});

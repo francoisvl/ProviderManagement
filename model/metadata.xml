@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema Namespace="ZCCS_PROVIDER_SRV" sap:schema-version="1" xml:lang="en" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+			<EntityType Name="Enrolment" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="EnrolmentId"/>
+				</Key>
+				<Property MaxLength="32" Name="EnrolmentId" Nullable="false" Type="Edm.String" sap:creatable="true" sap:filterable="false" sap:label="Enrolment ID"
+					sap:sortable="false" sap:updatable="false"/>
+				<Property MaxLength="32" Name="ChildGRN" Type="Edm.String" sap:creatable="true" sap:filterable="true" sap:label="Child GRN" sap:sortable="false"
+					sap:updatable="false"/>
+				<Property MaxLength="40" Name="ChildName" Type="Edm.String" sap:creatable="false" sap:filterable="true" sap:label="Child Name" sap:sortable="false"
+					sap:updatable="false"/>
+				<Property Name="HoursWeekly" Precision="7" Scale="2" Type="Edm.Decimal" sap:creatable="false" sap:filterable="false" sap:label="Hours (Weekly)"
+					sap:sortable="false" sap:updatable="false"/>
+				<Property Name="HoursMON" Precision="7" Scale="2" Type="Edm.Decimal" sap:creatable="true" sap:filterable="false" sap:label="Hours (Monday)"
+					sap:sortable="false" sap:updatable="true"/>
+				<Property Name="HoursTUE" Precision="7" Scale="2" Type="Edm.Decimal" sap:creatable="true" sap:filterable="false" sap:label="Hours (Tuesday)"
+					sap:sortable="false" sap:updatable="true"/>
+				<Property Name="HoursWED" Precision="7" Scale="2" Type="Edm.Decimal" sap:creatable="true" sap:filterable="false" sap:label="Hours (Wednesday)"
+					sap:sortable="false" sap:updatable="true"/>
+				<Property Name="HoursTHU" Precision="7" Scale="2" Type="Edm.Decimal" sap:creatable="true" sap:filterable="false" sap:label="Hours (Thursday)"
+					sap:sortable="false" sap:updatable="true"/>
+				<Property Name="HoursFRI" Precision="7" Scale="2" Type="Edm.Decimal" sap:creatable="true" sap:filterable="false" sap:label="Hours (Friday)"
+					sap:sortable="false" sap:updatable="true"/>
+				<Property Name="HoursSAT" Precision="7" Scale="2" Type="Edm.Decimal" sap:creatable="true" sap:filterable="false" sap:label="Hours (Saturday)"
+					sap:sortable="false" sap:updatable="true"/>
+				<Property Name="HoursSUN" Precision="7" Scale="2" Type="Edm.Decimal" sap:creatable="true" sap:filterable="false" sap:label="Hours (Sunday)"
+					sap:sortable="false" sap:updatable="true"/>
+				<Property MaxLength="1" Name="IsActive" Precision="1" Type="Edm.Boolean" sap:creatable="true" sap:filterable="true" sap:label="Active?"
+					sap:sortable="true" sap:updatable="true"/>
+				<Property Name="ValidSince" Type="Edm.DateTime" sap:creatable="true" sap:filterable="true" sap:label="Valid Since" sap:sortable="true"
+					sap:updatable="true"/>
+				<Property Name="ValidUntil" Type="Edm.DateTime" sap:creatable="true" sap:filterable="true" sap:label="Valid Until" sap:sortable="true"
+					sap:updatable="true"/>
+				<NavigationProperty FromRole="FromRole_EnrolmentToClaim" Name="EnrolmentToClaim" Relationship="ZCCS_PROVIDER_SRV.EnrolmentToClaim"
+					ToRole="ToRole_EnrolmentToClaim"/>
+			</EntityType>
+			<EntityType Name="Claim" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ClaimId"/>
+				</Key>
+				<Property MaxLength="32" Name="ClaimId" Nullable="false" Type="Edm.String" sap:creatable="true" sap:filterable="false" sap:label="Claim ID"
+					sap:sortable="false" sap:updatable="false"/>
+				<Property MaxLength="32" Name="EnrolmentId" Nullable="false" Type="Edm.String" sap:creatable="true" sap:filterable="false" sap:label="Enrolment ID"
+					sap:sortable="false" sap:updatable="false"/>
+				<Property Name="ClaimDate" Precision="7" Type="Edm.DateTime" sap:creatable="true" sap:filterable="true" sap:label="Claim Date" sap:sortable="true"
+					sap:updatable="true"/>
+				<Property Name="ClaimHours" Precision="7" Scale="2" Type="Edm.Decimal" sap:creatable="true" sap:filterable="false" sap:label="Hours Claimed"
+					sap:sortable="false" sap:updatable="true"/>
+				<Property Name="Notes" Type="Edm.String" sap:creatable="true" sap:filterable="false" sap:label="Notes" sap:sortable="false" sap:updatable="true"/>
+			</EntityType>
+			<Association Name="EnrolmentToClaim" sap:content-version="1">
+				<End Multiplicity="0..1" Role="FromRole_EnrolmentToClaim" Type="ZCCS_PROVIDER_SRV.Enrolment"/>
+				<End Multiplicity="*" Role="ToRole_EnrolmentToClaim" Type="ZCCS_PROVIDER_SRV.Claim"/>
+			</Association>
+			<EntityContainer Name="ZCCS_PROVIDER_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+				<EntitySet EntityType="ZCCS_PROVIDER_SRV.Enrolment" Name="EnrolmentSet" sap:content-version="1" sap:creatable="true" sap:deletable="true"
+					sap:pageable="true" sap:updatable="true"/>
+				<EntitySet EntityType="ZCCS_PROVIDER_SRV.Claim" Name="ClaimSet" sap:content-version="1" sap:creatable="true" sap:deletable="true"
+					sap:pageable="true" sap:updatable="true"/>
+				<AssociationSet Association="ZCCS_PROVIDER_SRV.EnrolmentToClaim" Name="EnrolmentToClaimSet" sap:content-version="1" sap:creatable="false"
+					sap:deletable="false" sap:updatable="false">
+					<End EntitySet="EnrolmentSet" Role="FromRole_EnrolmentToClaim"/>
+					<End EntitySet="ClaimSet" Role="ToRole_EnrolmentToClaim"/>
+				</AssociationSet>
+			</EntityContainer>
+			<atom:link href="http://localhost:8080/webidedispatcher/destinations/L0D/sap/opu/odata/sap/ZCCS_PROVIDER_SRV/$metadata" rel="self"
+				xmlns:atom="http://www.w3.org/2005/Atom"/>
+			<atom:link href="http://localhost:8080/webidedispatcher/destinations/L0D/sap/opu/odata/sap/ZCCS_PROVIDER_SRV/$metadata" rel="latest-version"
+				xmlns:atom="http://www.w3.org/2005/Atom"/>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

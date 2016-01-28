@@ -1,0 +1,18 @@
+[
+    {
+        "EnrolmentId" : "12345678901234567890123456789012",
+        "ChildGRN" : "ChildGRN-10001",
+        "ChildName" : "Peter Pan",
+        "HoursWeekly" : 12.0,
+        "HoursMON" : 4.0,
+        "HoursTUE" : 4.0,
+        "HoursWED" : 4.0,
+        "HoursTHU" : 0.0,
+        "HoursFRI" : 0.0,
+        "HoursSAT" : 0.0,
+        "HoursSUN" : 0.0,
+        "IsActive" : true,
+        "ValidSince" : "/Date(1451606400)",
+        "ValidUntil" : "/Date(253402214400)"
+    }
+]
