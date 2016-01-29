@@ -56,17 +56,12 @@ sap.ui.core.mvc.Controller.extend("au.gov.humanservices.ccs.ProviderManagement.v
 
 	bindView : function (sEntityPath) {
 		this.byId("saveButton").setEnabled(false);
+		this.resetSegmentedButtons();
 
 		var oView = this.getView();
 // 		oView.bindElement(sEntityPath); 
         oView.setBindingContext(this.getModel().getContext(sEntityPath));
 		this.addBindingEventListeners();
-
-		var oData = this.getModel().getData(this.getContextPath());
-		if (oData) {
-    		this.setSelectedSegmentedButtons();
-		}
-
 	},
 
 	addBindingEventListeners: function() {
@@ -92,13 +87,21 @@ sap.ui.core.mvc.Controller.extend("au.gov.humanservices.ccs.ProviderManagement.v
 				if (!oData) {
 					this.showEmptyView();
 					this.fireDetailNotFound();
-				} else {
-            		this.setSelectedSegmentedButtons();
 				}
 			}, this));
 		}
 	},
-
+    
+    resetSegmentedButtons : function() {
+        this.byId("segButtonMON").setSelectedButton(null);
+        this.byId("segButtonTUE").setSelectedButton(null);
+        this.byId("segButtonWED").setSelectedButton(null);
+        this.byId("segButtonTHU").setSelectedButton(null);
+        this.byId("segButtonFRI").setSelectedButton(null);
+        this.byId("segButtonSAT").setSelectedButton(null);
+        this.byId("segButtonSUN").setSelectedButton(null);
+    },
+    
 	showEmptyView : function () {
 		this.getRouter().navTo("notfound", {}, true); // don't create a history entry
 	},
@@ -166,29 +169,43 @@ sap.ui.core.mvc.Controller.extend("au.gov.humanservices.ccs.ProviderManagement.v
         return bIsActive ? sap.ui.core.ValueState.Success : sap.ui.core.ValueState.Warning;
     },
 
-    setSelectedSegmentedButtons : function() {
-        var oData = this.getContextObject();
-        this.byId("hoursMONSegmentedButton").setSelectedButton(this.byId(this.getHoursButtonId(oData.HoursMON, "MON")));
-        this.byId("hoursTUESegmentedButton").setSelectedButton(this.byId(this.getHoursButtonId(oData.HoursTUE, "TUE")));
-        this.byId("hoursWEDSegmentedButton").setSelectedButton(this.byId(this.getHoursButtonId(oData.HoursWED, "WED")));
-        this.byId("hoursTHUSegmentedButton").setSelectedButton(this.byId(this.getHoursButtonId(oData.HoursTHU, "THU")));
-        this.byId("hoursFRISegmentedButton").setSelectedButton(this.byId(this.getHoursButtonId(oData.HoursFRI, "FRI")));
-        this.byId("hoursSATSegmentedButton").setSelectedButton(this.byId(this.getHoursButtonId(oData.HoursSAT, "SAT")));
-        this.byId("hoursSUNSegmentedButton").setSelectedButton(this.byId(this.getHoursButtonId(oData.HoursSUN, "SUN")));
+    formatHoursForButtonKey : function(nHours) {
+        return Number(nHours).toFixed();
     },
     
-    getHoursButtonId : function(nHours, sDay) {
-        if (nHours <= 4000.0) {
-            return "hours" + sDay + "4Button";
-        }
-        if (nHours <= 6000.0) {
-            return "hours" + sDay + "6Button";
-        }
-        if (nHours <= 8000.0) {
-            return "hours" + sDay + "8Button";
-        }
+    onSelectHoursMON : function(oEvent) {
+        this.setHoursForDay("MON", oEvent.getParameters().key);
     },
-
+    
+    onSelectHoursTUE : function(oEvent) {
+        this.setHoursForDay("TUE", oEvent.getParameters().key);
+    },
+    
+    onSelectHoursWED : function(oEvent) {
+        this.setHoursForDay("WED", oEvent.getParameters().key);
+    },
+    
+    onSelectHoursTHU : function(oEvent) {
+        this.setHoursForDay("THU", oEvent.getParameters().key);
+    },
+    
+    onSelectHoursFRI : function(oEvent) {
+        this.setHoursForDay("FRI", oEvent.getParameters().key);
+    },
+    
+    onSelectHoursSAT : function(oEvent) {
+        this.setHoursForDay("SAT", oEvent.getParameters().key);
+    },
+    
+    onSelectHoursSUN : function(oEvent) {
+        this.setHoursForDay("SUN", oEvent.getParameters().key);
+    },
+    
+    setHoursForDay : function(sDay, sKey) {
+        var nHours = Number.parseFloat(sKey);
+        this.getModel().setProperty(this.getContextPath() + "/Hours" + sDay, nHours);
+    },
+    
 	getContextObject: function() {
 		var oModel = this.getModel();
 		return oModel.getProperty(this.getContextPath());

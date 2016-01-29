@@ -36,64 +36,78 @@
 								<items>
 									<IconTabFilter count="{HoursMON}" key="MON" text="{i18n>dayMON}">
 										<content>
-											<SegmentedButton id="hoursMONSegmentedButton" class="sapUiSmallMargin" >
-												<Button id="hoursMON4Button" text="4 {i18n>hoursText}"/>
-												<Button id="hoursMON6Button" text="6 {i18n>hoursText}"/>
-												<Button id="hoursMON8Button" text="8 {i18n>hoursText}"/>
+											<SegmentedButton id="segButtonMON" selectedKey="{path:'HoursMON', formatter:'.formatHoursForButtonKey'}" select="onSelectHoursMON" class="sapUiSmallMargin" >
+									            <items>
+    												<SegmentedButtonItem key="0" text="None"/>
+    												<SegmentedButtonItem key="4" text="4 Hours"/>
+    												<SegmentedButtonItem key="8" text="8 Hours"/>
+									            </items>
 											</SegmentedButton>
 										</content>
 									</IconTabFilter>
 									<IconTabFilter count="{HoursTUE}" key="TUE" text="{i18n>dayTUE}">
 										<content>
-											<SegmentedButton id="hoursTUESegmentedButton" class="sapUiSmallMargin" >
-												<Button id="hoursTUE4Button" text="4 {i18n>hoursText}"/>
-												<Button id="hoursTUE6Button" text="6 {i18n>hoursText}"/>
-												<Button id="hoursTUE8Button" text="8 {i18n>hoursText}"/>
+											<SegmentedButton id="segButtonTUE" selectedKey="{path:'HoursTUE', formatter:'.formatHoursForButtonKey'}" select="onSelectHoursTUE" class="sapUiSmallMargin" >
+									            <items>
+    												<SegmentedButtonItem key="0" text="None"/>
+    												<SegmentedButtonItem key="4" text="4 Hours"/>
+    												<SegmentedButtonItem key="8" text="8 Hours"/>
+									            </items>
 											</SegmentedButton>
 										</content>
 									</IconTabFilter>
 									<IconTabFilter count="{HoursWED}" key="WED" text="{i18n>dayWED}">
 										<content>
-											<SegmentedButton id="hoursWEDSegmentedButton" class="sapUiSmallMargin" >
-												<Button id="hoursWED4Button" text="4 {i18n>hoursText}"/>
-												<Button id="hoursWED6Button" text="6 {i18n>hoursText}"/>
-												<Button id="hoursWED8Button" text="8 {i18n>hoursText}"/>
+											<SegmentedButton id="segButtonWED" selectedKey="{path:'HoursWED', formatter:'.formatHoursForButtonKey'}" select="onSelectHoursWED" class="sapUiSmallMargin" >
+											    <items>
+    												<SegmentedButtonItem key="0" text="None"/>
+    												<SegmentedButtonItem key="4" text="4 Hours"/>
+    												<SegmentedButtonItem key="8" text="8 Hours"/>
+											    </items>
 											</SegmentedButton>
 										</content>
 									</IconTabFilter>
 									<IconTabFilter count="{HoursTHU}" key="THU" text="{i18n>dayTHU}">
 										<content>
-											<SegmentedButton id="hoursTHUSegmentedButton" class="sapUiSmallMargin" >
-												<Button id="hoursTHU4Button" text="4 {i18n>hoursText}"/>
-												<Button id="hoursTHU6Button" text="6 {i18n>hoursText}"/>
-												<Button id="hoursTHU8Button" text="8 {i18n>hoursText}"/>
+											<SegmentedButton id="segButtonTHU" selectedKey="{path:'HoursTHU', formatter:'.formatHoursForButtonKey'}" select="onSelectHoursTHU" class="sapUiSmallMargin" >
+											    <items>
+    												<SegmentedButtonItem key="0" text="None"/>
+    												<SegmentedButtonItem key="4" text="4 Hours"/>
+    												<SegmentedButtonItem key="8" text="8 Hours"/>
+											    </items>
 											</SegmentedButton>
 										</content>
 									</IconTabFilter>
 									<IconTabFilter count="{HoursFRI}" key="FRI" text="{i18n>dayFRI}">
 										<content>
-											<SegmentedButton id="hoursFRISegmentedButton" class="sapUiSmallMargin" >
-												<Button id="hoursFRI4Button" text="4 {i18n>hoursText}"/>
-												<Button id="hoursFRI6Button" text="6 {i18n>hoursText}"/>
-												<Button id="hoursFRI8Button" text="8 {i18n>hoursText}"/>
+											<SegmentedButton id="segButtonFRI" selectedKey="{path:'HoursFRI', formatter:'.formatHoursForButtonKey'}" select="onSelectHoursFRI" class="sapUiSmallMargin" >
+											    <items>
+    												<SegmentedButtonItem key="0" text="None"/>
+    												<SegmentedButtonItem key="4" text="4 Hours"/>
+    												<SegmentedButtonItem key="8" text="8 Hours"/>
+											    </items>
 											</SegmentedButton>
 										</content>
 									</IconTabFilter>
 									<IconTabFilter count="{HoursSAT}" key="SAT" text="{i18n>daySAT}">
 										<content>
-											<SegmentedButton id="hoursSATSegmentedButton" class="sapUiSmallMargin" >
-												<Button id="hoursSAT4Button" text="4 {i18n>hoursText}"/>
-												<Button id="hoursSAT6Button" text="6 {i18n>hoursText}"/>
-												<Button id="hoursSAT8Button" text="8 {i18n>hoursText}"/>
+											<SegmentedButton id="segButtonSAT" selectedKey="{path:'HoursSAT', formatter:'.formatHoursForButtonKey'}" select="onSelectHoursSAT" class="sapUiSmallMargin" >
+											    <items>
+    												<SegmentedButtonItem key="0" text="None"/>
+    												<SegmentedButtonItem key="4" text="4 Hours"/>
+    												<SegmentedButtonItem key="8" text="8 Hours"/>
+											    </items>
 											</SegmentedButton>
 										</content>
 									</IconTabFilter>
 									<IconTabFilter count="{HoursSUN}" key="SUN" text="{i18n>daySUN}">
 										<content>
-											<SegmentedButton id="hoursSUNSegmentedButton" class="sapUiSmallMargin" >
-												<Button id="hoursSUN4Button" text="4 {i18n>hoursText}"/>
-												<Button id="hoursSUN6Button" text="6 {i18n>hoursText}"/>
-												<Button id="hoursSUN8Button" text="8 {i18n>hoursText}"/>
+											<SegmentedButton id="segButtonSUN" selectedKey="{path:'HoursSUN', formatter:'.formatHoursForButtonKey'}" select="onSelectHoursSUN" class="sapUiSmallMargin" >
+											    <items>
+    												<SegmentedButtonItem key="0" text="None"/>
+    												<SegmentedButtonItem key="4" text="4 Hours"/>
+    												<SegmentedButtonItem key="8" text="8 Hours"/>
+											    </items>
 											</SegmentedButton>
 										</content>
 									</IconTabFilter>
