@@ -135,6 +135,7 @@
 		<footer id="detailFooter">
 			<Toolbar id="detailToolbar">
 				<content>
+					<Button id="cancelButton" press="onCancelButtonPressed" text="{i18n>cancelText}" type="Default" visible="{device]/isNoPhone}"></Button>
 					<ToolbarSpacer id="toolbarSpacer"></ToolbarSpacer>
 					<Button icon="sap-icon://action" id="actionButton" press="openActionSheet"></Button>
 					<Button id="saveButton" press="onSaveButtonPressed" text="{i18n>saveText}" type="Emphasized"></Button>

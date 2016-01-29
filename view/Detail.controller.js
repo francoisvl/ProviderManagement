@@ -1,4 +1,5 @@
 jQuery.sap.require("sap.m.MessageBox");
+jQuery.sap.require("au.gov.humanservices.ccs.ProviderManagement.util.Dialogs");
 
 sap.ui.core.mvc.Controller.extend("au.gov.humanservices.ccs.ProviderManagement.view.Detail", {
 
@@ -234,6 +235,44 @@ sap.ui.core.mvc.Controller.extend("au.gov.humanservices.ccs.ProviderManagement.v
 
 	getRouter : function () {
 		return sap.ui.core.UIComponent.getRouterFor(this);
+	},
+	
+	onSaveButtonPressed : function(oEvent) {
+		var oModel = this.getModel();
+		var oBundle = this.getResourceBundle();
+		// remove all current messages from message manager
+		sap.ui.getCore().getMessageManager().removeAllMessages();
+
+		// note that we have to specify this submission is only for deferred batch group "detailChanges"
+		// otherwise all service calls get batched together and the success/error outcome is clouded
+		oModel.submitChanges({
+			success: $.proxy(function() {
+				// TODO: until we can figure out why batching doesn't work, check for messages
+				if (sap.ui.getCore().getMessageManager().getMessageModel().oData.length > 0) {
+					// show odata errors in message popover
+					this.showMessagePopover(this.byId("detailToolbar"));
+				} else {
+					// raise a toast to the user!
+					this.navHistoryBack();
+					sap.m.MessageToast.show(oBundle.getText("enrolmentSubmittedMessage"));
+				}
+			}, this),
+			error: $.proxy(function() {
+				// show odata errors in message popover
+				this.showMessagePopover(this.byId("detailToolbar"));
+				sap.m.MessageToast.show(oBundle.getText("enrolmentSubmitErrorMessage"));
+			}, this)
+		});
+	},
+	
+	onCancelButtonPressed : function(oEvent) {
+		this.cleanup();
+		this.getModel().resetChanges();
+		this.navHistoryBack();
+	},
+
+	showMessagePopover: function(oOpenBy) {
+		au.gov.humanservices.ccs.ProviderManagement.util.Dialogs.getMessagePopover(this).openBy(oOpenBy || this.getView());
 	},
 	
 	onExit : function(oEvent){
